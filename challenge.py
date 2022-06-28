@@ -75,7 +75,7 @@ def translate_4(chaine):
         indice_premier = int(reste)-1
         premier = valeurs[indice_premier]
         reste_traduit = translate_3(chaine[1:])
-        resultat =  premier + " and " + reste_traduit
+        resultat =  premier + "  " + reste_traduit
         return resultat
 
 def translate_5(chaine):
@@ -112,38 +112,81 @@ def translate_5(chaine):
             resultat =  premier  +" "+ reste_traduit
             return resultat
 
+
+def translate_5_2(chaine):
+    if chaine[0]  == "0":
+        return translate_4(chaine[1:])
+    elif chaine[1] == "0" and chaine[2]=="0" and chaine[3]=="0" and chaine[4]=="0":
+        valeurs = ['ten ','twenty ','thrity ','forty ','fifty ','sixty ','seventy ','eighty ','ninety ']
+        indexe = int(chaine[0])-1
+        return valeurs[indexe]
+
+    elif chaine[0] == "1" and chaine[2]=="0" and chaine[3]=="0" and chaine[4]=="0":
+        valeurs = ['eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen ']
+        indexe = int(chaine[1])-1
+        return valeurs[indexe]
+
+    elif chaine[0] == "1":
+        valeurs = ['eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen ']
+        indice_premier = int(chaine[1])-1
+        premier = valeurs[indice_premier]
+        reste_traduit = translate_3(chaine[2:])
+        resultat =  premier +" "+ reste_traduit
+        return resultat
+        
+    else:
+        valeurs = ["twenty ", "thirty ", "forty ", "fifty ", "sixty ", "seventy ", "eighty ", "ninety"]
+        if chaine[1] == "0" and chaine[2]=="0" and chaine[3]=="0" and chaine[4]=="0":
+            indexe = int(chaine[0])-2
+            return valeurs[indexe]
+        
+        else:
+            indice_premier = int(chaine[0])-2
+            premier = valeurs[indice_premier]
+            reste_traduit = translate_4(chaine[1:])
+            resultat =  premier  +" "+ reste_traduit
+            return resultat
+
+
+
 def translate_6(chaine):
     if chaine[0]  == "0":
         return translate_5(chaine[1:])
-    elif chaine[1] == "0" and chaine[2]=="0":
-        valeurs = ['one hundred','two hundred','three hundred','four hundred','five hundred','six hundred','seven hundred','eight hundred','nine hundred']
-        indexe = int(chaine[0])-1
-        return valeurs[indexe]
     else:
-        valeurs = ['one hundred','two hundred','three hundred','four hundred','five hundred','six hundred','seven hundred','eight hundred','nine hundred']
-        reste = chaine[0]
-        indice_premier = int(reste)-1
+        valeurs = ['one hundred ','two hundred ','three hundred ','four hundred ','five hundred ','six hundred ','seven hundred ','eigth hundred ','nine hundred ']
+        indice_premier = int(chaine[0])-1
         premier = valeurs[indice_premier]
-        reste_traduit = translate_5(chaine[1:])
-        resultat =  premier + " " + reste_traduit
+        reste_traduit = translate_5_2(chaine[1:])
+        resultat =  premier +" "+ reste_traduit
         return resultat
 
-        
-        
+def translate_7(chaine):
+    if chaine[0]  == "0":
+        return translate_6(chaine[1:])
+    
+    elif chaine[1] == "0" and chaine[2]=="0" and chaine[3]=="0" and chaine[4]=="0" and chaine[5]=="0" and chaine[6]=="0":
+        valeurs = ['one ','two ','three ','four ','five ','six ','seven ','eigth ','nine ']
+        indexe = int(chaine[0])-1
+        if indexe == 0:
+            return valeurs[indexe] + 'million'
+        else:
+            return valeurs[indexe] + 'millions'
 
-
-
-
-
-
-
-
+    else:
+        valeurs = ['one','two','three','four','five','six','seven','eigth','nine']
+        indice_premier = int(chaine[0])-1
+        premier = valeurs[indice_premier]
+        reste_traduit = translate_6(chaine[1:])
+        if indice_premier == 0:
+            resultat =  premier +" million "+ reste_traduit
+        else:
+            resultat =  premier +" millions "+ reste_traduit
+        return resultat
 
 
 
 
 def solution(expression):
-    longueurs = [1,2,3,4,5,6,7,8,9]
     forme = bien_forme(expression)
     if forme == True:
         longueur = len(expression)
@@ -159,6 +202,10 @@ def solution(expression):
             print(translate_5(expression))
         if longueur==6:
             print(translate_6(expression))
+        if longueur==7:
+            print(translate_7(expression))
+        else:
+            print("!!!!! \tTHIS ALGORITHM WORK ONLY FOR INTERGERS GOING TO 0 FOR 9 999 999 999 \t!!!!")
         
         
 
