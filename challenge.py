@@ -1,25 +1,3 @@
-
-
-from unittest import result
-
-
-def bien_forme(expression):
-    acceptable = "0123456789/*-+%."
-    bf = True
-    nombre_parenthese_ouvrante = expression.count("(")
-    nombre_parenthese_fermante = expression.count(")")
-    for caractere in expression:
-        if caractere not in acceptable:
-            print("Mal forme: Caractere non mathematique trouve")
-            bf = False
-            break
-
-    if (nombre_parenthese_fermante != nombre_parenthese_ouvrante) or ("()" in expression):
-        print("Mal forme: (")
-        bf = False
-
-    return bf
-
 def translate_1(chaine):   
     valeurs = ['zero','one','two','three','four','five','six','seven','eight','nine']
     indexe = int(chaine)
