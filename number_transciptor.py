@@ -202,4 +202,4 @@ def translate(string:str='') -> str:
 
 	return result.replace('  ', ' ')
 
-print(translate(input().replace(' ', '')))
+print(translate(input("Plz, enter some random mathematical expression: ").replace(' ', '')))
